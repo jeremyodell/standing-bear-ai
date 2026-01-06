@@ -7,9 +7,9 @@ import { useScrollPosition } from "@/hooks/useScrollPosition";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 
 const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -21,8 +21,10 @@ export function Navigation() {
     // Close mobile menu for any link
     close();
 
-    // Only handle hash links with smooth scrolling
+    // Handle hash links with smooth scrolling
+    // For relative hashes (#section) or absolute hashes on home page (/#section while on /)
     if (href.startsWith("#")) {
+      // Relative hash - scroll on current page
       e.preventDefault();
       const element = document.querySelector(href);
       if (element) {
@@ -30,7 +32,18 @@ export function Navigation() {
         const top = element.getBoundingClientRect().top + window.scrollY - navHeight;
         window.scrollTo({ top, behavior: "smooth" });
       }
+    } else if (href.startsWith("/#") && window.location.pathname === "/") {
+      // Absolute hash on home page - scroll without navigation
+      e.preventDefault();
+      const hash = href.substring(1); // Remove leading '/'
+      const element = document.querySelector(hash);
+      if (element) {
+        const navHeight = 60;
+        const top = element.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
     }
+    // For absolute hashes on other pages (e.g., /#work from /blog), let Next.js navigate
   };
 
   return (
@@ -50,20 +63,45 @@ export function Navigation() {
           }}
         >
           <div className="flex items-center justify-between h-20 md:h-24 px-6 md:px-12 lg:px-20">
-            {/* Logo */}
+            {/* Logo - Adaptive Branding Lockup */}
             <Link
-              href="#hero"
-              onClick={(e) => handleLinkClick(e, "#hero")}
-              className="block hover:opacity-80 transition-opacity"
+              href="/#hero"
+              onClick={(e) => handleLinkClick(e, "/#hero")}
+              className="hover:opacity-80 transition-opacity"
+              aria-label="Standing Bear home"
             >
-              <Image
-                src="/images/standing-bear.webp"
-                alt="Standing Bear"
-                width={44}
-                height={44}
-                className="rounded"
-                priority
-              />
+              <div
+                className="flex items-center gap-3 rounded-lg border transition-all duration-300"
+                style={{
+                  backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.05)" : "transparent",
+                  backdropFilter: isScrolled ? "blur(12px)" : "none",
+                  borderColor: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                  padding: isScrolled ? "0.5rem 1rem" : "0",
+                }}
+              >
+                <Image
+                  src="/images/standing-bear.webp"
+                  alt="Standing Bear"
+                  width={isScrolled ? 52 : 64}
+                  height={isScrolled ? 52 : 64}
+                  className="rounded transition-all duration-300"
+                  style={{
+                    filter: isScrolled
+                      ? "drop-shadow(0 0 20px rgba(59, 130, 246, 0.15))"
+                      : "drop-shadow(0 0 20px rgba(59, 130, 246, 0.3))",
+                  }}
+                  priority
+                />
+                <span
+                  className="hidden sm:block font-semibold text-white tracking-tight transition-all duration-300"
+                  style={{
+                    fontSize: isScrolled ? "16px" : "20px",
+                    fontFamily: "var(--font-space-grotesk)",
+                  }}
+                >
+                  Standing Bear
+                </span>
+              </div>
             </Link>
 
             {/* Desktop Navigation - sparse, right-aligned */}
@@ -82,8 +120,8 @@ export function Navigation() {
               {/* Contact - slightly different treatment */}
               <li>
                 <Link
-                  href="#contact"
-                  onClick={(e) => handleLinkClick(e, "#contact")}
+                  href="/#contact"
+                  onClick={(e) => handleLinkClick(e, "/#contact")}
                   className="text-sm text-white"
                 >
                   Contact
@@ -115,7 +153,7 @@ export function Navigation() {
             transition={{ duration: 0.3 }}
           >
             <nav className="space-y-2">
-              {[...navLinks, { label: "Contact", href: "#contact" }].map((item, i) => (
+              {[...navLinks, { label: "Contact", href: "/#contact" }].map((item, i) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, x: -20 }}
