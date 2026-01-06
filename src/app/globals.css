@@ -216,3 +216,106 @@ a {
 .hover-glow:hover {
   box-shadow: 0 0 20px var(--accent-glow);
 }
+
+/* ===================================
+   Blog Styles - Editorial Design
+   =================================== */
+
+/* Blog font utilities */
+.font-syne {
+  font-family: var(--font-syne), var(--font-space-grotesk), sans-serif;
+}
+
+.font-crimson {
+  font-family: var(--font-crimson), Georgia, serif;
+}
+
+.font-jetbrains {
+  font-family: var(--font-jetbrains), 'Courier New', monospace;
+}
+
+/* Syntax highlighting for code blocks */
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Syntax highlighting theme - dark with blue accents */
+.hljs-comment,
+.hljs-quote {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #f59e0b;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #34d399;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #a78bfa;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #60a5fa;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #34d399;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #f87171;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #818cf8;
+}
+
+.hljs-meta {
+  color: #9ca3af;
+}
+
+.hljs-deletion {
+  background: #7f1d1d;
+}
+
+.hljs-addition {
+  background: #14532d;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}

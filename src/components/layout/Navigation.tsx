@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Navigation() {
@@ -17,6 +18,10 @@ export function Navigation() {
   const { isOpen, toggle, close } = useMobileMenu();
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Close mobile menu for any link
+    close();
+
+    // Only handle hash links with smooth scrolling
     if (href.startsWith("#")) {
       e.preventDefault();
       const element = document.querySelector(href);
@@ -24,7 +29,6 @@ export function Navigation() {
         const navHeight = 60;
         const top = element.getBoundingClientRect().top + window.scrollY - navHeight;
         window.scrollTo({ top, behavior: "smooth" });
-        close();
       }
     }
   };
