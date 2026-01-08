@@ -11,11 +11,21 @@ interface MarkdownRendererProps {
   content: string;
 }
 
-function CodeBlock({ children, className }: { children: string; className?: string }) {
+function CodeBlock({ children, className }: { children: any; className?: string }) {
   const [copied, setCopied] = useState(false);
 
+  // Extract text content from children (handle both strings and React nodes)
+  const getTextContent = (node: any): string => {
+    if (typeof node === 'string') return node;
+    if (Array.isArray(node)) return node.map(getTextContent).join('');
+    if (node?.props?.children) return getTextContent(node.props.children);
+    return String(node || '');
+  };
+
+  const textContent = getTextContent(children);
+
   const handleCopy = () => {
-    navigator.clipboard.writeText(children);
+    navigator.clipboard.writeText(textContent);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -37,7 +47,7 @@ function CodeBlock({ children, className }: { children: string; className?: stri
 
       {/* Code block - using spans to avoid nesting errors */}
       <span className={`block overflow-x-auto rounded-xl border border-white/10 bg-[#0a0a0a] p-6 ${className || ""}`}>
-        <code className="font-jetbrains text-sm leading-relaxed text-gray-300 whitespace-pre">{children}</code>
+        <code className="font-jetbrains text-sm leading-relaxed text-gray-300 whitespace-pre">{textContent}</code>
       </span>
     </span>
   );
@@ -97,7 +107,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 </code>
               );
             }
-            return <CodeBlock className={className}>{String(children)}</CodeBlock>;
+            return <CodeBlock className={className}>{children}</CodeBlock>;
           },
 
           // Blockquotes (pull quotes)
