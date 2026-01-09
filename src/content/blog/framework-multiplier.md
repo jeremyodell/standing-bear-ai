@@ -291,12 +291,9 @@ The framework multiplier effect is real. And it's powered by AI agent orchestrat
 
 ## About the Author
 
-I'm Jeremy O'Dell, a software engineer building AI-augmented development workflows. I specialize in designing systems that encode senior engineering judgment into reusable frameworks.
+I'm Jeremy Odell, a software engineer building AI-augmented development workflows. I specialize in designing systems that encode senior engineering judgment into reusable frameworks.
 
-Interested in AI/DevTools consulting or engineering roles? Let's connect:
-- LinkedIn: [Your LinkedIn]
-- GitHub: [Your GitHub]
-- Email: [Your Email]
+Interested in working together? [Contact Standing Bear AI](/#contact)
 
 ---
 
