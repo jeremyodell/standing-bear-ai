@@ -31,6 +31,8 @@ This is part one of a series on how agentic intelligence reshapes fundamental hu
 
 Programming languages have always been about abstraction—finding the sweet spot between what machines understand and what humans can reason about.
 
+![The Evolution of Programming Abstraction: From machine execution to human intent](/images/ladder-of-abstraction.png)
+
 **1950s: Assembly Language**
 You manipulated registers directly. `MOV AX, 5` meant "move the value 5 into register AX." Every operation was explicit. Want to add two numbers? You needed to know which CPU registers to use, how to load values, where to store results.
 
