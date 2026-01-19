@@ -15,7 +15,7 @@ Programming languages exist as a compromise—precise enough for machines, reada
 
 ---
 
-**2024**: You spend 20 minutes debugging a TypeScript type error. The problem? A missing `async` keyword three functions deep in a call chain. You know exactly what the code should do. The compiler just won't let you express it correctly.
+**2024**: You spend 20 minutes debugging a TypeScript type error. The problem? A missing async keyword three functions deep in a call chain. You know exactly what the code should do. The compiler just won't let you express it correctly.
 
 **2028**: You tell your AI agent, "Build an authentication system with JWT tokens, refresh token rotation, and rate limiting on failed login attempts." It asks three clarifying questions about session timeout behavior and password requirements. You answer. Thirty seconds later, you're reviewing a complete, tested implementation.
 
