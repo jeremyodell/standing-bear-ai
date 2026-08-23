@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# --- ~/Work conventions (jbo-onboard) ---
+.worktrees/
+.env
+.env.local
+.mise.local.toml
+.claude/settings.local.json
